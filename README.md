@@ -1,5 +1,7 @@
+Preview WEB: [kira-ai-mentor-production.up.railway.app](https://kira-ai-mentor-production.up.railway.app/)
+
 # Kira — AI Mentor TikTok Affiliate
-kira-ai-mentor-production.up.railway.app
+
 Kira (Kontent Intelligence & Research Assistant) adalah web app AI mentor untuk
 TikTok Affiliate Creator Indonesia. Sebut nama produk, Kira meriset lalu
 memberi **5 Hook + 5 Caption + 5 Voice Over** siap pakai. Mendukung **voice
