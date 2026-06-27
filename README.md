@@ -52,6 +52,35 @@ Buka browser ke **http://localhost:3000/** untuk mulai.
 
 ---
 
+## Deploy (Render — disarankan)
+
+Kira adalah **server Node persisten** (punya database SQLite, sesi login, dan
+streaming SSE). Karena itu Kira **tidak cocok di platform serverless** seperti
+Vercel (filesystem read-only, tidak ada proses `listen` yang persisten, default
+Node < 22). Gunakan hosting yang menjalankan server Node, mis. **Render** atau
+**Railway**. Sudah tersedia `render.yaml` siap pakai.
+
+Langkah deploy di Render:
+
+1. Push project ke GitHub (lihat repo kamu).
+2. Buka https://render.com → New → **Blueprint** → pilih repo ini. Render akan
+   membaca `render.yaml` otomatis (build: `npm install && npm run build`,
+   start: `npm start`, Node 22, plus disk persisten untuk database).
+3. Isi **Environment Variables** di dashboard (yang `sync: false`):
+   - `GEMINI_API_KEY` — wajib.
+   - `ELEVENLABS_API_KEY` — opsional (untuk suara natural).
+4. Klik **Apply** / Deploy. Setelah selesai, buka URL `*.onrender.com`.
+
+> Database disimpan di disk persisten (`/var/data/kira.db`) supaya login &
+> riwayat tidak hilang saat redeploy. Di paket gratis Render, service "tidur"
+> saat idle dan butuh beberapa detik untuk bangun di request pertama.
+
+> Alternatif tanpa `render.yaml`: set Build Command `npm install && npm run build`,
+> Start Command `npm start`, dan Node version `22` secara manual di platform mana pun.
+
+
+---
+
 ## Struktur File
 
 ```

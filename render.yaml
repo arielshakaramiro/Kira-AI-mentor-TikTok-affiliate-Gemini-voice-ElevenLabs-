@@ -1,0 +1,33 @@
+services:
+  - type: web
+    name: kira-ai
+    runtime: node
+    plan: free
+    # Build: install deps lalu bundle frontend (app.jsx -> app.js).
+    # Wajib, karena public/app.js di-gitignore (artifact build).
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: "22.11.0"
+      # Isi nilai rahasia ini lewat dashboard Render (jangan commit ke git).
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: ELEVENLABS_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-2.5-flash-lite
+      - key: ELEVENLABS_VOICE_ID
+        value: hpp4J3VqNfWAUOO0d1Us
+      - key: ELEVENLABS_MODEL
+        value: eleven_multilingual_v2
+      # DB SQLite ditaruh di disk persisten (lihat blok disk di bawah).
+      - key: DB_PATH
+        value: /var/data/kira.db
+    # Disk persisten 1GB supaya database (login & riwayat) tidak hilang saat
+    # restart/redeploy. Kalau tidak butuh persistensi, blok disk ini boleh dihapus.
+    disk:
+      name: kira-data
+      mountPath: /var/data
+      sizeGB: 1

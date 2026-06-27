@@ -4,6 +4,9 @@
   "description": "Chatbot sederhana berbasis Gemini AI (Node.js + Express + Vanilla JS)",
   "type": "module",
   "main": "index.js",
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "build": "esbuild public/app.jsx --bundle --format=esm --jsx=automatic --minify --target=es2020 --outfile=public/app.js",
     "start": "node index.js",
