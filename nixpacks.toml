@@ -1,0 +1,15 @@
+# Nixpacks config untuk Railway.
+# Paksa Node 22 (wajib untuk node:sqlite) & build frontend sebelum start.
+providers = ["node"]
+
+[phases.setup]
+nixPkgs = ["nodejs_22"]
+
+[phases.install]
+cmds = ["npm install"]
+
+[phases.build]
+cmds = ["npm run build"]
+
+[start]
+cmd = "npm start"

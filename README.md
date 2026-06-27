@@ -52,31 +52,33 @@ Buka browser ke **http://localhost:3000/** untuk mulai.
 
 ---
 
-## Deploy (Render — disarankan)
+## Deploy (Railway — disarankan)
 
 Kira adalah **server Node persisten** (punya database SQLite, sesi login, dan
 streaming SSE). Karena itu Kira **tidak cocok di platform serverless** seperti
 Vercel (filesystem read-only, tidak ada proses `listen` yang persisten, default
-Node < 22). Gunakan hosting yang menjalankan server Node, mis. **Render** atau
-**Railway**. Sudah tersedia `render.yaml` siap pakai.
+Node < 22). Gunakan hosting yang menjalankan server Node, mis. **Railway** atau
+**Render**. Konfigurasi Railway (`railway.json` + `nixpacks.toml`) sudah tersedia.
 
-Langkah deploy di Render:
+Langkah deploy di Railway:
 
-1. Push project ke GitHub (lihat repo kamu).
-2. Buka https://render.com → New → **Blueprint** → pilih repo ini. Render akan
-   membaca `render.yaml` otomatis (build: `npm install && npm run build`,
-   start: `npm start`, Node 22, plus disk persisten untuk database).
-3. Isi **Environment Variables** di dashboard (yang `sync: false`):
+1. Push project ke GitHub.
+2. Buka https://railway.app → **New Project** → **Deploy from GitHub repo** →
+   pilih repo ini. Railway membaca `nixpacks.toml` (Node 22, build
+   `npm run build`, start `npm start`) otomatis.
+3. Buka tab **Variables**, tambahkan:
    - `GEMINI_API_KEY` — wajib.
-   - `ELEVENLABS_API_KEY` — opsional (untuk suara natural).
-4. Klik **Apply** / Deploy. Setelah selesai, buka URL `*.onrender.com`.
+   - `ELEVENLABS_API_KEY` — opsional (suara natural).
+   - (opsional) `GEMINI_MODEL`, `ELEVENLABS_VOICE_ID`, `ELEVENLABS_MODEL`.
+4. Tab **Settings → Networking → Generate Domain** untuk URL publik (HTTPS).
 
-> Database disimpan di disk persisten (`/var/data/kira.db`) supaya login &
-> riwayat tidak hilang saat redeploy. Di paket gratis Render, service "tidur"
-> saat idle dan butuh beberapa detik untuk bangun di request pertama.
+> Filesystem Railway bersifat ephemeral — agar database (login & riwayat) tidak
+> hilang saat redeploy, buat **Volume** di Railway, mount (mis. ke `/data`), lalu
+> set env `DB_PATH=/data/kira.db`. Tanpa login, app tetap jalan dengan riwayat di
+> localStorage browser.
 
-> Alternatif tanpa `render.yaml`: set Build Command `npm install && npm run build`,
-> Start Command `npm start`, dan Node version `22` secara manual di platform mana pun.
+> Voice command butuh HTTPS untuk izin mikrofon — URL Railway sudah HTTPS, jadi
+> voice berfungsi di sana.
 
 
 ---
