@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Kira">
+  <defs>
+    <linearGradient id="kiraGrad" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#E05454"/>
+      <stop offset="0.35" stop-color="#C13383"/>
+      <stop offset="0.7" stop-color="#792CA2"/>
+      <stop offset="1" stop-color="#443199"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="64" height="64" rx="16" fill="url(#kiraGrad)"/>
+  <path d="M22 16 H29 V31 L41 16 H49.5 L36 32.5 L50 48 H41.5 L29 33.5 V48 H22 Z" fill="#fff"/>
+  <circle cx="46" cy="20" r="3" fill="#fff" opacity="0.9"/>
+</svg>

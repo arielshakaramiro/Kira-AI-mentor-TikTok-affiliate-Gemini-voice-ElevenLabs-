@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Environment variables (jangan pernah commit API key!)
+.env
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+
+# Build artifact (dihasilkan oleh `npm run build`)
+public/app.js
+
+# Database SQLite (data lokal, jangan di-commit)
+data/
+*.db
+*.db-shm
+*.db-wal
